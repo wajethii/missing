@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- ===== BOX ICONS ===== -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+        <!-- ===== CSS ===== -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/styles.css">
+
+        <title>Sidebar menu responsive</title>
+    </head>
+    <body id="body-pd">
+        <header class="header" id="header">
+            <div class="header__toggle">
+                <i class='bx bx-menu' id="header-toggle"></i>
+            </div>
+
+            <div class="header__img">
+                <img src="assets/img/perfil.jpg" alt="">
+            </div>
+        </header>
+
+        <div class="l-navbar" id="nav-bar">
+            <nav class="nav">
+                <div>
+                    <a href="#" class="nav__logo">
+                        <i class='bx bx-layer nav__logo-icon'></i>
+                        <span class="nav__logo-name">Kazini</span>
+                    </a>
+
+                    <div class="nav__list">
+                        <a href="#" class="nav__link active">
+                        <i class='bx bx-grid-alt nav__icon' ></i>
+                            <span class="nav__name">Dashboard</span>
+                        </a>
+
+                        <a href="customers.php" class="nav__link">
+                            <i class='bx bx-group nav__icon' ></i>
+                            
+                            <span class="nav__name">Clients</span>
+                        </a>
+                        
+                        <a href="workers.php" class="nav__link">
+                            <i class='bx bx-briefcase nav__icon' ></i>
+                            <span class="nav__name">Workers</span>
+                        </a>
+
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-folder nav__icon' ></i>
+                            <span class="nav__name">Projects</span>
+                        </a>
+
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-cog nav__icon' ></i>
+                            <span class="nav__name">Settings</span>
+                        </a>
+
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-bar-chart-alt-2 nav__icon' ></i>
+                            <span class="nav__name">Analytics</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="logout.php" class="nav__link">
+                    <i class='bx bx-log-out nav__icon' ></i>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </nav>
+        </div>
+        <div class="content">
+            <div class="container mt-5">
+                <?php include('message.php'); ?>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="d-flex justify-content-between align-items-center">List Of Workers
+                                    <!-- Button to trigger Add Worker Modal -->
+                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addWorkerModal">Add worker</a>
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Photo</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>ID No.</th>
+                                                <th>Speciality</th>
+                                                <th>Contracted</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $query = "SELECT * FROM users";
+                                            $query_run = mysqli_query($con, $query);
+
+                                            if (mysqli_num_rows($query_run) > 0) {
+                                                foreach ($query_run as $user) {
+                                                    //echo 
+                                            ?>
+                                                    <tr>
+                                                        <td><img src="<?= $user['image']; ?>" class="table-img" alt="User Image"></td>
+                                                        <td><?= $user['name']; ?></td>
+                                                        <td><?= $user['email']; ?></td>
+                                                        <td><?= $user['phone']; ?></td>
+                                                        <td><?= $user['krapin']; ?></td>
+                                                        <td><?= $user['Speciality']; ?></td>
+                                                        <td><?= $user['contract_length']; ?></td>
+
+                                                        <td>
+                                                            <!-- Kebab icon to trigger modal -->
+                                                            <button type="button" class="btn btn-clear" data-bs-toggle="modal" data-bs-target="#kebabModal<?= $user['id']; ?>">
+                                                                <i class="fas fa-ellipsis-v"></i>
+                                                            </button>
+
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="kebabModal<?= $user['id']; ?>" tabindex="-1" aria-labelledby="kebabModalLabel<?= $user['id']; ?>" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-end modal-sm"> <!-- Adjust modal size and position -->
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <!-- Trigger view user modal -->
+                                                                            <div class="mb-2">
+                                                                                <button type="button" class="btn btn-clear btn-sm" data-bs-toggle="modal" data-bs-target="#viewUserModal<?= $user['id']; ?>">Info</button>
+                                                                            </div>
+                                                                            <div class="mb-2">
+                                                                                <!-- Trigger edit user modal -->
+                                                                                <button type="button" class="btn btn-clear btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal<?= $user['id']; ?>">Edit</button>
+                                                                            </div>
+                                                                            <div>
+                                                                                <form action="code.php" method="POST">
+                                                                                    <button type="submit" name="deleteuser" value="<?= $user['id']; ?>" class="btn btn-clear btn-sm text-danger">Delete</button>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Edit User Modal -->
+                                                            <div class="modal fade" id="editUserModal<?= $user['id']; ?>" tabindex="-1" aria-labelledby="editUserModalLabel<?= $user['id']; ?>" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-end modal-sm">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="editUserModalLabel<?= $user['id']; ?>">Edit User</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <!-- Edit user form goes here -->
+                                                                            <form action="code.php" method="POST" enctype="multipart/form-data">
+                                                                                <input type="hidden" name="userid" value="<?= $user['id']; ?>">
+                                                                                <div class="mb-3">
+                                                                                    <!-- Image as a clickable element -->
+
+                                                                                    <label for="imageInput<?= $user['id']; ?>" class="mb-0">
+                                                                                        <img id="userImage<?= $user['id']; ?>" src="<?= $user['image']; ?>" class="img-fluid" alt="User Image" style="cursor: pointer;">
+                                                                                    </label>
+                                                                                    <!-- Hidden file input triggered by the image click -->
+                                                                                    <input type="file" name="image" id="imageInput<?= $user['id']; ?>" class="form-control" style="display: none;">
+                                                                                </div>
+
+                                                                                <div class="mb-3">
+                                                                                    <label>User Name</label>
+                                                                                    <input type="text" name="name" value="<?= $user['name']; ?>" class="form-control">
+                                                                                </div>
+                                                                                <div class="mb-3">
+                                                                                    <label>Email</label>
+                                                                                    <input type="email" name="email" value="<?= $user['email']; ?>" class="form-control">
+                                                                                </div>
+                                                                                <div class="mb-3">
+                                                                                    <label>Phone</label>
+                                                                                    <input type="text" name="phone" value="<?= $user['phone']; ?>" class="form-control">
+                                                                                </div>
+                                                                                <div class="mb-3">
+                                                                                    <label>KRA PIN/ID NO</label>
+                                                                                    <input type="text" name="krapin" value="<?= $user['krapin']; ?>" class="form-control">
+                                                                                </div>
+                                                                                <div class="mb-3">
+                                                                                    <label>Speciality</label>
+                                                                                    <select name="Speciality" class="form-control">
+                                                                                        <?php
+                                                                                        $specialities = array("Network Installation", "Network Diagnosis", "Speed Upgrade", "CCTV Installation", "Service Management", "Security Services");
+                                                                                        foreach ($specialities as $speciality) {
+                                                                                            $selected = ($speciality == $user['Speciality']) ? 'selected' : '';
+                                                                                            echo "<option value='$speciality' $selected>$speciality</option>";
+                                                                                        }
+                                                                                        ?>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="mb-3">
+                                                                                    <label>Contract Length</label>
+                                                                                    <input type="text" name="contract_length" value="<?= $user['contract_length']; ?>" class="form-control">
+                                                                                </div>
+                                                                                <div class="mb-3">
+                                                                                    <button type="submit" name="updateuser" class="btn btn-primary mt-4">Save Updates</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- View User Modal -->
+                                                            <div class="modal fade" id="viewUserModal<?= $user['id']; ?>" tabindex="-1" aria-labelledby="viewUserModalLabel<?= $user['id']; ?>" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body" style="font-family: 'Roboto', sans-serif;">
+                                                                            <div class="row align-items-left">
+                                                                                <div class="col-12 text-center mb-3">
+                                                                                    <img src="<?= $user['image']; ?>" class="img-fluid rounded-circle" style="width: 56px; height: 56px;" alt="User Image">
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <p><i class="far fa-user inactive-icon"></i> <span style="margin-left: 5px; font-weight: 300;"><?= $user['name']; ?></span></p>
+                                                                                    <p><i class="far fa-envelope inactive-icon"></i> <span style="margin-left: 5px; font-weight: 300;"><?= $user['email']; ?></span></p>
+                                                                                    <p><i class="fas fa-phone-alt inactive-icon"></i> <span style="margin-left: 5px; font-weight: 300;"><?= $user['phone']; ?></span></p>
+                                                                                    <p><i class="far fa-id-badge inactive-icon"></i> <span style="margin-left: 5px; font-weight: 300;"><?= $user['krapin']; ?></span></p>
+                                                                                    <p><i class="far fa-star inactive-icon"></i> <span style="margin-left: 5px; font-weight: 300;"><?= $user['Speciality']; ?></span></p>
+                                                                                    <p><i class="far fa-calendar-alt inactive-icon"></i> <span style="margin-left: 5px; font-weight: 300;"><?= $user['contract_length']; ?></span></p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                            <?php
+                                                }
+                                            } else {
+                                                echo "<h5>No Record Found</5>";
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Add Worker Modal -->
+<div class="modal fade" id="addWorkerModal" tabindex="-1" aria-labelledby="addWorkerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addWorkerModalLabel">Add Worker</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Include the provided form for adding a worker -->
+                <form action="code.php" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input type="text" id="name" name="name" class="form-control" placeholder=" ">
+                            <label for="name">Name</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input type="email" id="email" name="email" class="form-control required" placeholder=" ">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input type="text" id="phone" name="phone" class="form-control" placeholder=" ">
+                            <label for="phone">Phone</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input type="text" id="krapin" name="krapin" class="form-control" placeholder=" ">
+                            <label for="krapin">ID NO</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <select class="form-select" id="Speciality" name="Speciality" aria-label="Speciality">
+                                <option selected>Select</option>
+                                <option value="Network Installation">Network Installation</option>
+                                <option value="Network Diagnosis">Network Diagnosis</option>
+                                <option value="Speed Upgrade">Speed Upgrade</option>
+                                <option value="CCTV Installation">CCTV Installation</option>
+                                <option value="Service Management">Service Management</option>
+                                <option value="Security Services">Security Services</option>
+                            </select>
+                            <label for="Speciality">Speciality</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input type="text" id="contract_length" name="contract_length" class="form-control" placeholder=" ">
+                            <label for="contract_length">Contract Length</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Upload Image</label>
+                        <input type="file" id="image" name="image" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" name="saveuser" class="btn btn-primary">Save User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- Bootstrap Bundle with Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("show");
+        }
+        // Remove modal backdrop when modal is closed
+        document.addEventListener('DOMContentLoaded', function() {
+            var modals = document.querySelectorAll('.modal');
+            modals.forEach(function(modal) {
+                modal.addEventListener('hidden.bs.modal', function() {
+                    document.body.classList.remove('modal-open');
+                    var modalBackdrops = document.getElementsByClassName('modal-backdrop');
+                    for (var i = 0; i < modalBackdrops.length; i++) {
+                        document.body.removeChild(modalBackdrops[i]);
+                    }
+                });
+            });
+        });
+
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("show");
+        }
+    </script>
+        <!-- Bootstrap Bundle with Popper.js -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!--===== MAIN JS =====-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
