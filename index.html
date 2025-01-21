@@ -18,43 +18,6 @@
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="styles.min.css" />
-    <style>
-        .logo-img {
-            width: 120px;
-            /* Adjust as needed */
-            height: auto;
-        }
-
-        /* Apply Roboto to headings */
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: 'Roboto', sans-serif;
-        }
-
-        /* Apply Poppins to body text */
-        body,
-        p,
-        span,
-        li,
-        a {
-            font-family: 'Poppins', sans-serif;
-        }
-        .cardd {
-        height: 200px; /* Set a fixed height for uniformity */
-        padding: 20px; /* Add padding for better spacing */
-        border-radius: 8px; /* Rounded corners */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-        transition: transform 0.3s; /* Smooth transition for hover effect */
-    }
-    .cardd:hover {
-        transform: scale(1.05); /* Scale effect on hover */
-        background-color: rgba(23, 162, 184, 0.9); /* Change to bg-info color on hover */
-    }
-    </style>
 </head>
 
 <body class="bg-white">
@@ -78,11 +41,11 @@
                         <a class="nav-link text-dark" href="#">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">Report Missing</a>
+                        <a class="nav-link text-dark" href="report.html">Report Missing</a>
                     </li>
                 </ul>
                 <!-- Icons -->
-                <a type="button" class="btn btn-outline-info" href="donate.html">Donate</a>
+                <a type="button" class="btn btn-outline-dark" href="donate.html">Donate</a>
             </div>
         </div>
     </nav>
@@ -400,7 +363,7 @@
         <!-- Copyright Section -->
         <div class="row text-center mt-3">
             <div class="col-12">
-                <p class="mb-0">&copy; 2024 Missing Persons. All rights reserved.</p>
+                <p class="text-dark">&copy; <span id="current-year"></span>  All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -433,32 +396,10 @@
     };
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/1.9.3/countUp.min.js"></script>
-
-<!-- Use a non-module version of CountUp.js -->
-<script src="https://cdn.jsdelivr.net/npm/countup.js@1.9.3/dist/countUp.min.js"></script>
-
 <script>
-    // Initialize CountUp animations for each number
-    window.onload = function () {
-        const options = {
-            duration: 2, // Adjust animation speed
-        };
-
-        // Initialize CountUp for each number
-        const workersCount = new CountUp("workers", 200, options);
-        const motorcyclesCount = new CountUp("motorcycles", 50, options);
-        const yearsCount = new CountUp("years", 10, options);
-        const clientsCount = new CountUp("clients", 100, options);
-
-        // Start the counters
-        if (!workersCount.error) workersCount.start();
-        if (!motorcyclesCount.error) motorcyclesCount.start();
-        if (!yearsCount.error) yearsCount.start();
-        if (!clientsCount.error) clientsCount.start();
-    };
+    // Dynamically set the current year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
 </script>
-
 <!-- Bootstrap Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
