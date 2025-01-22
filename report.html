@@ -54,8 +54,15 @@
         <div class="content">
             <h5 class="fw-bold">Welcome!</h5>
             <p class="fw-lighter">
-                Please complete the three steps of this form to provide all the details required for reporting
-                a missing person. You can navigate using "Next" and "Previous" buttons.
+Please provide as much detail as possible. Once we have processed your form, a member of the team will contact you to introduce themselves and talk you through what happens next.
+
+If we assess the missing person to be particularly vulnerable, at medium or high risk, we will contact you as soon as possible.
+
+In all other cases, we will aim to contact you in the next 2-3 working days.
+
+To find out more about how we handle your data please see our Privacy and Confidentiality Policies.
+
+Family Support
             </p>
             <button class="btn-onboarding-close shadow" id="closeOnboarding">Get Started</button>
         </div>
@@ -69,7 +76,7 @@
     </script>
 
     <div class="container py-5 mt-4">
-        <h3 class="mb-1 mt-4">Report a Missing Person</h3>
+        <h5 class="mb-1 mt-4">Report a Missing Person</h5>
         <p class="text-secondary">Please provide as much detail as possible to assist with the search.</p>
 
         <!-- Progress Indicator -->
@@ -92,8 +99,8 @@
         <form id="multiStepForm" class="bg-white p-4 rounded shadow-sm">
             <!-- Step 1: Personal Information -->
             <div id="step1" class="form-step">
-                <h5 class="mb-3">Personal Information</h5>
-                <div class="form-floating mb-3">
+                <h6 class="mb-3">Missing person's details</h6>
+                <div class="form-floating mb-3 ">
                     <input type="text" class="form-control" id="fullName" placeholder="Full Name" required>
                     <label for="fullName">Full Name *</label>
                 </div>
@@ -113,12 +120,12 @@
                     </select>
                     <label for="gender">Gender *</label>
                 </div>
-                <button type="button" class="btn btn-info w-100 next">Next</button>
+                <button type="button" class="btn btn-info text-white w-100 next">Next</button>
             </div>
 
             <!-- Step 2: Last Known Details -->
             <div id="step2" class="form-step d-none">
-                <h5 class="mb-3">Last Known Details</h5>
+                <h6 class="mb-3">Last Known Details</h6>
                 <div class="form-floating mb-3">
                     <input type="date" class="form-control" id="dateLastSeen" required>
                     <label for="dateLastSeen">Date Last Seen *</label>
@@ -139,29 +146,16 @@
                 <div class=" mb-3">
                     <label for="Photos" class="form-label" required>Upload a Recent Photo *</label>
                     <div class="mt-1">
-
-                        <label for="Photos" class="svg-upload mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
-                                color="#000000" fill="none">
-                                <path
-                                    d="M11.5085 2.9903C7.02567 2.9903 4.78428 2.9903 3.39164 4.38238C1.99902 5.77447 1.99902 8.015 1.99902 12.4961C1.99902 16.9771 1.99902 19.2176 3.39164 20.6098C4.78428 22.0018 7.02567 22.0018 11.5085 22.0018C15.9912 22.0018 18.2326 22.0018 19.6253 20.6098C21.0179 19.2176 21.0179 16.9771 21.0179 12.4961V11.9958"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                <path d="M4.99902 20.9898C9.209 16.2385 13.9402 9.93727 20.999 14.6632"
-                                    stroke="currentColor" stroke-width="1.5" />
-                                <path d="M17.9958 1.99829V10.0064M22.0014 5.97728L13.9902 5.99217" stroke="currentColor"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </label>
                         <input class="form-control border-0" type="file" id="Photos" accept="image/*" multiple>
                     </div>
                 </div>
                 <button type="button" class="btn btn-secondary w-100 previous mt-4">Previous</button>
-                <button type="button" class="btn btn-info w-100 mt-3 next">Next</button>
+                <button type="button" class="btn btn-info text-white w-100 mt-3 next">Next</button>
             </div>
 
             <!-- Step 3: Reporting Party Info -->
             <div id="step3" class="form-step d-none">
-                <h5 class="mb-3">Reporting Party Information</h5>
+                <h6 class="mb-3">About You</h6>
                 <p class="text-secondary mb-3">Almost there! Please provide your details and confirm
                     submission.</p>
                 <div class="form-floating mb-3">
@@ -194,7 +188,7 @@
                     </label>
                 </div>
                 <button type="button" class="btn btn-secondary w-100 previous">Previous</button>
-                <button type="submit" class="btn btn-info w-100 mt-3">Submit Report</button>
+                <button type="submit" class="btn btn-info text-white w-100 mt-3">Submit Report</button>
             </div>
         </form>
     </div>
